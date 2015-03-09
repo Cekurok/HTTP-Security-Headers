@@ -2,7 +2,7 @@
 Test for security related http headers.
 #Installation
 Go to https://github.com/RandomAdversary/HTTP-Security-Headers 
-and click the “Download Zip” button. 
+and click the “Download ZIP” button. 
 
 This will download a file with a name like HTTP-Security-Headers-master.zip.
 

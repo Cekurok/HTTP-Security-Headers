@@ -1,2 +1,2 @@
-# HTTP-Security-Headers
-Simple scanner for security related HTTP headers
+# HTTP Security Headers
+Simple scanner for security related HTTP headers.

@@ -1,0 +1,63 @@
+<h2>Security Headers for <a href="<?= $website?>"> <?=$website ?></a></h2>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="min-width: 0em; width: <?=$score ?>%;"> 
+<?php 
+if($score<5)
+  echo "<span class=\"label label-danger\">";
+?>
+  Score:  <?= round($score)?> 
+<?php 
+if($score<5)
+  echo " </span>";
+?>
+ </div>
+</div>
+<table class="table table-hover">
+  <tr>
+    <th>Result</th>
+    <th>Name</th>
+    <th>Actual Value</th>		
+    <th>Our Recommendation</th>
+  </tr>
+<?php
+$this->headTitle("Results for " . $website);
+$headers = $this->headers;
+foreach ($headers as $name => $data):
+?>
+<tr>
+<td>
+<?php
+    if (!strcmp($data["used"], "yes")) echo "<span class=\"label label-success\">Correct</span>";
+    if (!strcmp($data["used"], "no")) echo "<span class=\"label label-danger\">Missing</span>";
+    if (!strcmp($data["used"], "wrong")) echo "<span class=\"label label-warning\">Warning</span>";
+?>
+</td>
+<td><?= $name ?></td>
+<td><?= $data["value"] ?></td>
+<td><?= $data["recommend"] ?></td>
+</tr>
+<?php
+endforeach; ?>
+</table>
+<h3>All headers</h3>
+<div class="table-responsive">
+<table class="table table-hover table-bordered">
+  <tr>
+  <th>#</th>
+  <th>Name</th>
+  <th>Value</th>		
+  </tr>
+<?php
+$count = 1;
+foreach ($allHeaders as $name => $value):
+?>
+<tr>
+	<td><?= $count++?></td>
+	<td><?= $name?></td>
+    <td><?= $value?></td>
+</tr>
+<?php
+endforeach; ?>
+</table>
+</div>
+

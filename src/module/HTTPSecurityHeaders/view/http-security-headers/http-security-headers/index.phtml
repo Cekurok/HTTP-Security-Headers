@@ -1,0 +1,20 @@
+<style>
+body {
+    background-image:url(<?=$this->basePath() . '/img/33SqsHx.jpg'?>);
+    background-size:cover
+}
+</style>
+</br>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('httpsecurityheaders', array('action' => 'result')));
+$form->prepare();
+?>
+<div class=""  align="center">
+    <div class="input-group">
+    <h3 style="color: white;">&#9658; Website&#9660;</h3>
+<?=$this->form()->openTag($form)?>
+<?=$this->formCollection($form)?>
+<?= $this->form()->closeTag()?>
+    </div>
+  </div>

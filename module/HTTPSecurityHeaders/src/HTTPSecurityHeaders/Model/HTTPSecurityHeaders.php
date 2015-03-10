@@ -68,10 +68,10 @@ class HTTPSecurityHeaders
             $this->headersData["X-Content-Type-Options"]["value"] = "";
         }
         
-        //X-Frame-Options 
+        //X-Frame-Options (deprecated)
+        if ($headersDataRaw->has("X-Frame-Options")) {
         $this->headersData["X-Frame-Options"] = array();
         $this->headersData["X-Frame-Options"]["recommend"] = "sameorigin";
-        if ($headersDataRaw->has("X-Frame-Options")) {
             $value = $headersDataRaw->get("X-Frame-Options")->getFieldValue("X-Frame-Options");
             if (strcasecmp($value, "deny") == 0 || strcasecmp($value, "sameorigin") == 0) {
                 $this->headersData["X-Frame-Options"]["used"] = "yes";
@@ -81,8 +81,7 @@ class HTTPSecurityHeaders
             }
             $this->headersData["X-Frame-Options"]["value"] = $value;
         } else {
-            $this->headersData["X-Frame-Options"]["used"] = "no";
-            $this->headersData["X-Frame-Options"]["value"] = "";
+                $this->total--;
         }
         
         //Strict-Transport-Security 

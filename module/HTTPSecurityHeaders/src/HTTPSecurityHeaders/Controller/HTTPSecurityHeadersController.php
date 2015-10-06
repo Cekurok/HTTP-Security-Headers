@@ -31,7 +31,7 @@
             	"score" => $web->getScore(),
             	);
             }
-          //Note* This is very bad way to handle exceptions, don't try this at work.
+          // Note* This is very bad way to handle exceptions, don't try this at work.
           catch (\Exception $e) { //Something is wrong, probably timeout or invalid input.
            //Display cat image, after 5 seconds return to the index page.
            die("<img src=\"http://thecatapi.com/api/images/get.php?format=src&type=gif\" height=\"300px\" width=\"350px\"> </br>

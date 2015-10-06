@@ -11,6 +11,7 @@ before_script:
     - rm -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
     - composer install
     - bin/composer install
+    -  composer require zendframework/zendframework
 
 script:
     - php composer.phar install

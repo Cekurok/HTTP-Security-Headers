@@ -36,7 +36,7 @@
            //Display cat image, after 5 seconds return to the index page.
            die("<img src=\"http://thecatapi.com/api/images/get.php?format=src&type=gif\" height=\"300px\" width=\"350px\"> </br>
            	</br>Sorry, I got error.</br>
-           	<b>Don't worry, enjoy the of presence of this kitten.</b></br>
+           	</br>
            	I will take you back to the main page in 5 seconds.
             <meta http-equiv=\"refresh\" content=\"5;url=./\">");
             }

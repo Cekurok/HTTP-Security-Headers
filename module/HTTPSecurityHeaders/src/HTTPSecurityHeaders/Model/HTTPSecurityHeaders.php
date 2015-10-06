@@ -10,7 +10,7 @@ class HTTPSecurityHeaders
     protected $score;
     protected $headersData;
     protected $headersDataRaw;
-    protected $total=14;
+    protected $total=12;
     public function exchangeArray($data) {
         $this->website = $data["website"];
         $this->score = 0;
@@ -22,7 +22,7 @@ class HTTPSecurityHeaders
         $client = new Client($this->website,array(
         'adapter' => 'Zend\Http\Client\Adapter\Curl')
         );
-        $client->setOptions(array('maxredirects' => 1, 
+        $client->setOptions(array('maxredirects' => 3, 
         	'timeout' => 30,
         	'useragent' => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",)
         );
@@ -156,9 +156,9 @@ class HTTPSecurityHeaders
         }
         
         //Pragma 
+        if ($headersDataRaw->has("Pragma")) {
         $this->headersData["Pragma"] = array();
         $this->headersData["Pragma"]["recommend"] = "no-cache";
-        if ($headersDataRaw->has("Pragma")) {
             $value = $headersDataRaw->get("Pragma")->getFieldValue("Pragma");
             if (strcasecmp($value, "no-cache") == 0) {
                 $this->headersData["Pragma"]["used"] = "yes";
@@ -167,9 +167,6 @@ class HTTPSecurityHeaders
                 $this->headersData["Pragma"]["used"] = "wrong";
             }
             $this->headersData["Pragma"]["value"] = $value;
-        } else {
-            $this->headersData["Pragma"]["used"] = "no";
-            $this->headersData["Pragma"]["value"] = "";
         }
         
         //Expires 
@@ -191,9 +188,9 @@ class HTTPSecurityHeaders
         }
         
         //X-Permitted-Cross-Domain-Policies 
-        $this->headersData["X-Permitted-Cross-Domain-Policies"] = array();
-        $this->headersData["X-Permitted-Cross-Domain-Policies"]["recommend"] = "master-only";
         if ($headersDataRaw->has("X-Permitted-Cross-Domain-Policies")) {
+            $this->headersData["X-Permitted-Cross-Domain-Policies"] = array();
+            $this->headersData["X-Permitted-Cross-Domain-Policies"]["recommend"] = "master-only";
             $value = $headersDataRaw->get("X-Permitted-Cross-Domain-Policies")->getFieldValue("X-Permitted-Cross-Domain-Policies");
             if (strcasecmp($value, "master-only") == 0) {
                 $this->headersData["X-Permitted-Cross-Domain-Policies"]["used"] = "yes";
@@ -202,9 +199,6 @@ class HTTPSecurityHeaders
                 $this->headersData["X-Permitted-Cross-Domain-Policies"]["used"] = "wrong";
             }
             $this->headersData["X-Permitted-Cross-Domain-Policies"]["value"] = $value;
-        } else {
-            $this->headersData["X-Permitted-Cross-Domain-Policies"]["used"] = "no";
-            $this->headersData["X-Permitted-Cross-Domain-Policies"]["value"] = "";
         }
         
         //Access-Control-Allow-Origin 
@@ -274,7 +268,7 @@ class HTTPSecurityHeaders
            {
             $this->headersData["Set-Cookie"]["used"]="wrong";
            }
-           $this->headersData["Set-Cookie"]["value"]="See All headers for the actual value";
+           $this->headersData["Set-Cookie"]["value"]="See all headers for the actual value";
         }
         else
         {

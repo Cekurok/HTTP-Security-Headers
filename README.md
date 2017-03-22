@@ -15,7 +15,7 @@ Tests for presence and proper configuration of the following headers:
 * Server
 * Set-Cookie
 
-#Installation
+# Installation
 Go to https://github.com/RandomAdversary/HTTP-Security-Headers 
 and click the “Download ZIP” button. 
 
@@ -32,7 +32,7 @@ To install Zend Framework 2 into our application we simply type:
     php composer.phar self-update
     php composer.phar install
 from the HTTP Security Headers folder.
-#Screenshots
+# Screenshots
 ![Home](http://i.imgur.com/6B3YvtZ.jpg)
 ![Results](http://i.imgur.com/K1AZAdW.png)
 ![Results Techcrunch](http://i.imgur.com/kUGL1Fg.png)
